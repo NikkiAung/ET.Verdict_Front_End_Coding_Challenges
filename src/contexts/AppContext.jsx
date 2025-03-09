@@ -10,12 +10,14 @@ const AppContextProvider = (props) => {
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
     // console.log("Fetching from:", BACKEND_URL); 
     const [data,setData] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const fetchData = async () => {
+        setLoading(true)
         try {
             // Fetch only 10 posts
             const { data } = await axios.get(`${BACKEND_URL}?_limit=10`); 
-            if (data) { 
+            if (Array.isArray(data) && data.length > 0) { 
                 setData(data)
             } else {
                 toast.error("No data found. Please try again.");
@@ -23,6 +25,11 @@ const AppContextProvider = (props) => {
         } catch (error) {
             console.error("API Fetch Error:", error);
             toast.error("Failed to fetch data. Please try again later.");
+            setLoading(false)
+        } finally {
+            setTimeout(() => {
+                setLoading(false)
+            }, 2000);
         }
     }
 
@@ -32,7 +39,8 @@ const AppContextProvider = (props) => {
 
     const value = {
         BACKEND_URL,
-        data
+        data,
+        loading
     }
 
     return (
