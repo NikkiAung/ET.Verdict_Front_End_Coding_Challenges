@@ -18,10 +18,11 @@ const AppContextProvider = (props) => {
             if (data) { 
                 setData(data)
             } else {
-                toast.error("Data is failed to fetch from server")
+                toast.error("No data found. Please try again.");
             }
         } catch (error) {
-            toast.error(error.message)
+            console.error("API Fetch Error:", error);
+            toast.error("Failed to fetch data. Please try again later.");
         }
     }
 
