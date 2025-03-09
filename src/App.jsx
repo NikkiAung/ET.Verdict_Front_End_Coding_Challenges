@@ -1,13 +1,18 @@
 import { useState } from 'react'
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CustomersDisplay from './pages/CustomersDisplay';
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
-    <div className='text-red-300'>
-      <h1>Hello World</h1>
-    </div>
+    <>
+      <ToastContainer/>
+      <Routes>
+        <Route path="/" element={<CustomersDisplay />} />
+      </Routes>
+    </>
   )
 }
 
