@@ -1,8 +1,8 @@
-import { useState } from 'react'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CustomersDisplay from './components/CustomersDisplay';
 import { Routes, Route } from "react-router-dom";
+import CardDisplay from './components/CardDisplay';
+import CardDetail from './components/CardDetail';
 
 function App() {
   
@@ -10,7 +10,8 @@ function App() {
     <>
       <ToastContainer/>
       <Routes>
-        <Route path="/" element={<CustomersDisplay />} />
+        <Route path="/" element={<CardDisplay />} />
+        <Route path="/detail/:id" element={<CardDetail />} />
       </Routes>
     </>
   )
